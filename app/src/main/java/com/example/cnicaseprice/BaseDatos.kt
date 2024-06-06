@@ -4,25 +4,27 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+
 const val BD = "SePrice"
 class BaseDatos (contexto: Context): SQLiteOpenHelper(contexto, BD, null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         val sql = "CREATE TABLE Usuario" +
                   "(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, clave TEXT, categoria TEXT)"
         db?.execSQL(sql)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         TODO("Not yet implemented")
     }
 
-    fun insertarUsuario(usuario: Usuario):String{
+    fun insertarUsuario(nombre: String, clave: String, categoria: String):String{
         val bd = this.writableDatabase
         val contenedor = ContentValues()
 
-        contenedor.put("nombre", usuario.nombre)
-        contenedor.put("clave", usuario.clave)
-        contenedor.put("categoria", usuario.categoria)
+        contenedor.put("nombre", nombre)
+        contenedor.put("clave", clave)
+        contenedor.put("categoria", categoria)
 
         val resultado = bd.insert("Usuario", null, contenedor)
 
@@ -47,7 +49,7 @@ class BaseDatos (contexto: Context): SQLiteOpenHelper(contexto, BD, null, 1) {
                     cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3))
-                    lista.add(usuario)
+                lista.add(usuario)
             } while(cursor.moveToNext())
             bd.close()
             cursor.close()
