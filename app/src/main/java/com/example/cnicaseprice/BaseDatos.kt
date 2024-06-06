@@ -4,12 +4,12 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-const val BD = "SePrice";
+const val BD = "SePrice"
 class BaseDatos (contexto: Context): SQLiteOpenHelper(contexto, BD, null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         val sql = "CREATE TABLE Usuario" +
-                  "(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, clave TEXT, categoria TEXT)";
-        db?.execSQL(sql);
+                  "(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, clave TEXT, categoria TEXT)"
+        db?.execSQL(sql)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -17,28 +17,28 @@ class BaseDatos (contexto: Context): SQLiteOpenHelper(contexto, BD, null, 1) {
     }
 
     fun insertarUsuario(usuario: Usuario):String{
-        val bd = this.writableDatabase;
-        var contenedor = ContentValues();
+        val bd = this.writableDatabase
+        val contenedor = ContentValues()
 
-        contenedor.put("nombre", usuario.nombre);
-        contenedor.put("clave", usuario.clave);
-        contenedor.put("categoria", usuario.categoria);
+        contenedor.put("nombre", usuario.nombre)
+        contenedor.put("clave", usuario.clave)
+        contenedor.put("categoria", usuario.categoria)
 
-        val resultado = bd.insert("Usuario", null, contenedor);
+        val resultado = bd.insert("Usuario", null, contenedor)
 
-        if(resultado == -1.toLong()){
-            return "Error al insertar el usuario"
+        return if(resultado == (-1).toLong()){
+            "Error al insertar el usuario"
         } else {
 
-            return "Insert exitoso"
+            "Insert exitoso"
         }
     }
 
     fun traerDatosUsuario():MutableList<Usuario>{
-        val bd = this.readableDatabase;
-        var lista = mutableListOf<Usuario>();
-        var sql = "SELECT * FROM Usuario";
-        var cursor = bd.rawQuery(sql, null);
+        val bd = this.readableDatabase
+        val lista = mutableListOf<Usuario>()
+        val sql = "SELECT * FROM Usuario"
+        val cursor = bd.rawQuery(sql, null)
 
         if(cursor.moveToFirst()){
             do{
@@ -46,38 +46,38 @@ class BaseDatos (contexto: Context): SQLiteOpenHelper(contexto, BD, null, 1) {
                     cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),
-                    cursor.getString(3));
-                    lista.add(usuario);
-            } while(cursor.moveToNext());
-            bd.close();
-            cursor.close();
+                    cursor.getString(3))
+                    lista.add(usuario)
+            } while(cursor.moveToNext())
+            bd.close()
+            cursor.close()
         }
-        return lista;
+        return lista
     }
 
     fun actualizarDatosUsuario(id: Int, nombre: String, clave: String, categoria: String):String{
-        val bd = this.writableDatabase;
-        var contenedor = ContentValues();
-        contenedor.put("nombre", nombre);
-        contenedor.put("clave", clave);
-        contenedor.put("categoria", categoria);
+        val bd = this.writableDatabase
+        val contenedor = ContentValues()
+        contenedor.put("nombre", nombre)
+        contenedor.put("clave", clave)
+        contenedor.put("categoria", categoria)
 
-        val resultado = bd.update("Usuario", contenedor, "id = ?", arrayOf(id.toString()));
-        if(resultado == 0){
-            return "Error al actualizar el usuario"
+        val resultado = bd.update("Usuario", contenedor, "id = ?", arrayOf(id.toString()))
+        return if(resultado == 0){
+            "Error al actualizar el usuario"
         } else {
-            return "Actualizacion exitosa"
+            "Actualizacion exitosa"
         }
 
     }
 
     fun borrarUsuario(id: Int):String{
-        val bd = this.writableDatabase;
-        val resultado = bd.delete("Usuario", "id = ?", arrayOf(id.toString()));
-        if(resultado == 0){
-            return "Error al borrar el usuario"
+        val bd = this.writableDatabase
+        val resultado = bd.delete("Usuario", "id = ?", arrayOf(id.toString()))
+        return if(resultado == 0){
+            "Error al borrar el usuario"
         } else {
-            return "Borrado exitoso"
+            "Borrado exitoso"
         }
     }
 }
