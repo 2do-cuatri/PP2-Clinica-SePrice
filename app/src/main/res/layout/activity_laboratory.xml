@@ -5,25 +5,27 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".LaboratoryActivity"
     android:gravity="center"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/txtClinicSP"
-        android:text="Clínica SePrice"
+        android:id="@+id/txtLaboratory"
+        android:text="Laboratorio"
         android:fontFamily="@font/atma"
         android:textColor="#0c0c0c"
         android:layout_width="370dp"
         android:layout_height="40dp"
         android:layout_marginTop="100dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
+
+
         android:textAlignment="center"
         android:textSize="60dp" />
 
     <Button
-        android:id="@+id/btnAdminLogIn"
-        android:text="Ingreso Administrativo"
+        android:id="@+id/btnAppointmentL"
+        android:text="Registrar Turno"
         android:fontFamily="@font/atma"
         android:textColor="#0c0c0c"
         android:textSize="24sp"
@@ -31,25 +33,9 @@
         android:layout_width="260dp"
         android:layout_height="30dp"
         android:layout_marginTop="70dp"
-        android:layout_marginBottom="70dp"
-        android:layout_weight="1"
+        android:layout_marginBottom="250dp"
+        android:layout_weight="2"
         android:backgroundTint="#b2f2bb"
         android:includeFontPadding="true" />
-
-
-    <Button
-        android:id="@+id/btnMedLogIn"
-        android:text="Ingreso Médico"
-        android:fontFamily="@font/atma"
-        android:textColor="#0c0c0c"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        android:layout_width="260dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="70dp"
-        android:layout_weight="1"
-        android:backgroundTint="#a5d8ff"
-        android:includeFontPadding="true"/>
-
 
 </LinearLayout>
