@@ -1,36 +1,37 @@
 package com.example.cnicaseprice
 
-import android.content.Context
+
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var databaseHelper: DataBase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-        //Conectar base de datos.
-        val con= BaseDatos(this)
+        val usernameEditText = findViewById<EditText>(R.id.usernameEditText)
+        val passwordEditText = findViewById<EditText>(R.id.passwordEditText)
+        val loginButton = findViewById<Button>(R.id.loginButton)
 
-        //Crear credenciales de admin por única vez
-        val sharedPreferences = getSharedPreferences("MyAdminCredentials", Context.MODE_PRIVATE)
-        val credentialsCreated = sharedPreferences.getBoolean("credentials_created", false)
+        databaseHelper = DataBase(this)
 
-        if (!credentialsCreated) {
-            con.insertarUsuario("admin", "admin", "admin")
-            sharedPreferences.edit().putBoolean("credentials_created", true).apply()
-        } else {
-            Toast.makeText(this, "Admin ya está creado", Toast.LENGTH_SHORT).show()
+        loginButton.setOnClickListener {
+            val username = usernameEditText.text.toString()
+            val password = passwordEditText.text.toString()
+
+            if (databaseHelper.validateUser(username, password)) {
+                val intent = Intent(this, WelcomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
