@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".AdminMenuActivity">
+
+    <TextView
+        android:id="@+id/txtAdminMenu"
+        android:layout_width="370dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="50dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/atma"
+        android:textColor="#0c0c0c"
+        android:text="Menu Admin"
+        android:textAlignment="center"
+        android:textSize="60dp" />
+
+    <Button
+        android:id="@+id/btnPatientAdm"
+        android:text="Ingresar Paciente"
+        android:fontFamily="@font/atma"
+        android:textSize="24sp"
+        android:textColor="#0c0c0c"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:backgroundTint="#ffc9c9"
+        android:includeFontPadding="true"/>
+
+
+    <Button
+        android:id="@+id/btnStudies"
+        android:text="Estudios"
+        android:fontFamily="@font/atma"
+        android:textSize="24sp"
+        android:textColor="#0c0c0c"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:backgroundTint="#b2f2bb"
+        android:includeFontPadding="true"/>
+
+    <Button
+        android:id="@+id/btnLaboratory"
+        android:text="Laboratorio"
+        android:fontFamily="@font/atma"
+        android:textSize="24sp"
+        android:textColor="#0c0c0c"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:backgroundTint="#a5d8ff"
+        android:includeFontPadding="true"/>
+
+    <Button
+        android:id="@+id/btnClinic"
+        android:text="Clínica"
+        android:fontFamily="@font/atma"
+        android:textSize="24sp"
+        android:textColor="#0c0c0c"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="50dp"
+        android:layout_weight="1"
+        android:backgroundTint="#ffdc99"
+        android:includeFontPadding="true"/>
+
+
+</LinearLayout>

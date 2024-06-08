@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StudiesActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtStudies"
+        android:text="Estudios"
+        android:fontFamily="@font/atma"
+        android:textColor="#0c0c0c"
+        android:layout_width="370dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:textSize="60dp" />
+
+    <Button
+        android:id="@+id/btnAppointmentS"
+        android:text="Registrar Turno"
+        android:fontFamily="@font/atma"
+        android:textColor="#0c0c0c"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="70dp"
+        android:layout_weight="1"
+        android:backgroundTint="#b2f2bb"
+        android:includeFontPadding="true" />
+
+
+    <Button
+        android:id="@+id/btnVoucher"
+        android:text="Generar Comprobante"
+        android:fontFamily="@font/atma"
+        android:textColor="#0c0c0c"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="70dp"
+        android:layout_weight="1"
+        android:backgroundTint="#a5d8ff"
+        android:includeFontPadding="true"/>
+
+</LinearLayout>
