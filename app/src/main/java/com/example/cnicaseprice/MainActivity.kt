@@ -5,11 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import android.content.Intent
-import android.os.Bundle
-import android.widget.Button
-import androidx.activity.enableEdgeToEdge
-
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -29,9 +24,17 @@ class MainActivity : AppCompatActivity() {
             val password = passwordEditText.text.toString()
 
             if (databaseHelper.validateUser(username, password)) {
-                val intent = Intent(this, WelcomeActivity::class.java)
-                startActivity(intent)
-                finish()
+
+                if (DataBase.loggedUser?.categoria == "admin"){
+                    val intent = Intent(this, AdminMenuActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else if (DataBase.loggedUser?.categoria == "medico") {
+                    val intent = Intent(this, DoctorMenuActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+
             } else {
                 Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
             }

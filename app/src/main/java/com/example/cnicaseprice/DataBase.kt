@@ -14,6 +14,7 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         private const val COLUMN_USERNAME = "username"
         private const val COLUMN_PASSWORD = "password"
         private const val COLUMN_TYPE = "type"
+        var loggedUser: Usuario? = null
     }
 
 
@@ -22,6 +23,7 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
                   "($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COLUMN_USERNAME TEXT, $COLUMN_PASSWORD TEXT, $COLUMN_TYPE TEXT)"
         db?.execSQL(sql)
         db?.execSQL("INSERT INTO $TABLE_USER ($COLUMN_USERNAME, $COLUMN_PASSWORD, $COLUMN_TYPE) VALUES ('admin', 'admin', 'admin')")
+        db?.execSQL("INSERT INTO $TABLE_USER ($COLUMN_USERNAME, $COLUMN_PASSWORD, $COLUMN_TYPE) VALUES ('medico', 'medico', 'medico')")
    }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -50,6 +52,11 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         val db = readableDatabase
         val cursor = db.rawQuery("SELECT * FROM $TABLE_USER WHERE $COLUMN_USERNAME = '$username' AND $COLUMN_PASSWORD = '$password'", null)
         val isValid = cursor.count > 0
+        if (isValid){
+            cursor.moveToFirst()
+            loggedUser = Usuario(cursor.getInt(0), username, password, cursor.getString(3))
+        }
+
         cursor.close()
         db.close()
         return isValid
