@@ -3,25 +3,41 @@ package com.example.cnicaseprice
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import androidx.activity.enableEdgeToEdge
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var databaseHelper: DataBase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        val button1 = findViewById<Button>(R.id.btnAdminLogIn)
-        button1.setOnClickListener{
-            val intent1 = Intent(this, AdminMenuActivity::class.java)
-            startActivity(intent1)
-        }
-        val button2 = findViewById<Button>(R.id.btnMedLogIn)
-        button2.setOnClickListener{
-            val intent2 = Intent(this, AdminMenuActivity::class.java)
-            startActivity(intent2)
+        val usernameEditText = findViewById<EditText>(R.id.usernameEditText)
+        val passwordEditText = findViewById<EditText>(R.id.passwordEditText)
+        val loginButton = findViewById<Button>(R.id.loginButton)
+
+        databaseHelper = DataBase(this)
+
+        loginButton.setOnClickListener {
+            val username = usernameEditText.text.toString()
+            val password = passwordEditText.text.toString()
+
+            if (databaseHelper.validateUser(username, password)) {
+
+                if (DataBase.loggedUser?.categoria == "admin"){
+                    val intent = Intent(this, AdminMenuActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else if (DataBase.loggedUser?.categoria == "medico") {
+                    val intent = Intent(this, DoctorMenuActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+
+            } else {
+                Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

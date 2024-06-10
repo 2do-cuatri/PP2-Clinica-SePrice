@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".AdminMenuActivity">
+
+    <TextView
+        android:id="@+id/txtDoctorMenu"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/atma"
+        android:text="Menu Médico"
+        android:textAlignment="center"
+        android:textColor="#0c0c0c"
+        android:textSize="60dp" />
+
+    <Button
+        android:id="@+id/btnPatientMed"
+        android:text="Mis Pacientes"
+        android:fontFamily="@font/atma"
+        android:textSize="24sp"
+        android:textColor="#0c0c0c"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:backgroundTint="#ffc9c9"
+        android:includeFontPadding="true"/>
+
+
+    <Button
+        android:id="@+id/btnSupplies"
+        android:text="Insumos"
+        android:fontFamily="@font/atma"
+        android:textSize="24sp"
+        android:textColor="#0c0c0c"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:backgroundTint="#b2f2bb"
+        android:includeFontPadding="true"/>
+
+</LinearLayout>
