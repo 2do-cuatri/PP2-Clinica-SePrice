@@ -18,8 +18,6 @@
         android:layout_height="40dp"
         android:layout_marginTop="100dp"
         android:layout_weight="3"
-
-
         android:textAlignment="center"
         android:textSize="60dp" />
 

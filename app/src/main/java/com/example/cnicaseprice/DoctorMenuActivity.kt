@@ -1,5 +1,6 @@
 package com.example.cnicaseprice
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
@@ -19,5 +20,14 @@ class DoctorMenuActivity : AppCompatActivity() {
         }
         val patientButton = findViewById<Button>(R.id.btnPatientMed)
         val suppliesButton = findViewById<Button>(R.id.btnSupplies)
+
+        suppliesButton.setOnClickListener {
+            var intent = Intent(this, SuppliesActivity::class.java)
+            startActivity(intent)
+        }
+
+        patientButton.setOnClickListener {
+            var intent = Intent(this, PatientActivity::class.java)
+        }
     }
 }
