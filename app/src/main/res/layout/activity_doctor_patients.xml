@@ -5,54 +5,55 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClinicActivity"
+    tools:context=".DoctorPatientsActivity"
     android:gravity="center"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/txtClinic"
-        android:text="Clínica"
-        android:fontFamily="@font/atma"
-        android:textColor="#0c0c0c"
+        android:id="@+id/txtDoctorPatients"
         android:layout_width="370dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:layout_weight="1"
+        android:fontFamily="@font/atma"
+        android:text="Mis Pacientes"
         android:textAlignment="center"
+        android:textColor="#0c0c0c"
         android:textSize="60dp" />
 
     <Button
-        android:id="@+id/btnAppointment"
-        android:text="Registrar Turno"
+        android:id="@+id/btnWaitingRoom"
+        android:text="Sala de Espera"
         android:fontFamily="@font/atma"
+        android:textSize="30sp"
         android:textColor="#0c0c0c"
-        android:textSize="24sp"
         android:textAlignment="center"
         android:layout_width="260dp"
         android:layout_height="30dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:backgroundTint="#b2f2bb"
-        android:includeFontPadding="true" />
+        android:includeFontPadding="true"/>
 
 
     <Button
-        android:id="@+id/btnAppointmentO"
-        android:text="Registrar Sobreturno"
+        android:id="@+id/btnMedicalHistory"
+        android:text="Historia Clínica"
         android:fontFamily="@font/atma"
+        android:textSize="30sp"
         android:textColor="#0c0c0c"
-        android:textSize="24sp"
         android:textAlignment="center"
         android:layout_width="260dp"
         android:layout_height="30dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="70dp"
         android:layout_weight="1"
         android:backgroundTint="#a5d8ff"
         android:includeFontPadding="true"/>
 
     <Button
-        android:id="@+id/btnBackAdmMenuC"
+        android:id="@+id/btnBackDMP"
         android:text="Volver"
         android:fontFamily="@font/atma"
         android:textSize="24sp"

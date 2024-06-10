@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SuppliesActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtSuppliesReq"
+        android:layout_width="370dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="50dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/atma"
+        android:textColor="#0c0c0c"
+        android:text="Solicitar reposición de insumos"
+        android:textAlignment="center"
+        android:textSize="30dp" />
+
+
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="38dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSupply1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Insumo A"
+            android:fontFamily="@font/atma"
+            android:textSize="24sp"
+            android:textColor="#0c0c0c"
+            android:textAlignment="center"
+            android:backgroundTint="#DACACA"/>
+
+        <Button
+            android:id="@+id/btnSupply2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Insumo B"
+            android:fontFamily="@font/atma"
+            android:textSize="24sp"
+            android:textColor="#0c0c0c"
+            android:textAlignment="center"
+            android:backgroundTint="#B4C9DA"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="38dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSupply3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Insumo C"
+            android:fontFamily="@font/atma"
+            android:textSize="24sp"
+            android:textColor="#0c0c0c"
+            android:textAlignment="center"
+            android:backgroundTint="#8E9E91"/>
+
+        <Button
+            android:id="@+id/btnSupply4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Insumo D"
+            android:fontFamily="@font/atma"
+            android:textSize="24sp"
+            android:textColor="#0c0c0c"
+            android:textAlignment="center"
+            android:backgroundTint="#F1DCB5"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="38dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSupply5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Insumo E"
+            android:fontFamily="@font/atma"
+            android:textSize="24sp"
+            android:textColor="#0c0c0c"
+            android:textAlignment="center"
+            android:backgroundTint="#DF9595"/>
+
+        <Button
+            android:id="@+id/btnSupply6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Insumo F"
+            android:fontFamily="@font/atma"
+            android:textSize="24sp"
+            android:textColor="#0c0c0c"
+            android:textAlignment="center"
+            android:backgroundTint="#6591B3"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnRequest"
+        android:text="Solicitar"
+        android:fontFamily="@font/atma"
+        android:textSize="24sp"
+        android:textColor="#0c0c0c"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:backgroundTint="#b2f2bb"
+        android:includeFontPadding="true" />
+    <Button
+        android:id="@+id/btnBackDMS"
+        android:text="Volver"
+        android:fontFamily="@font/atma"
+        android:textSize="24sp"
+        android:textColor="#0c0c0c"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="80dp"
+        android:layout_weight="0.5"
+        android:backgroundTint="#E3C5E8"
+        android:includeFontPadding="true" />
+
+</LinearLayout>

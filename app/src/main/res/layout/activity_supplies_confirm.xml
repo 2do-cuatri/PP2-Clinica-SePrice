@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SuppliesConfirmActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtSuppliesR"
+        android:layout_width="370dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1.5"
+        android:fontFamily="@font/atma"
+        android:text="Insumos"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#0C0C0C"
+        android:textSize="35sp" />
+
+    <ListView
+        android:layout_width="260dp"
+        android:layout_height="156dp"
+        android:layout_weight="1.5"
+        android:fontFamily="@font/atma"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textColor="#C61414"/>
+
+    <TextView
+        android:id="@+id/txtRequired"
+        android:layout_width="370dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1.5"
+        android:fontFamily="@font/atma"
+        android:text="Solicitados"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#0C0C0C"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/txtNote"
+        android:layout_width="370dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1.5"
+        android:fontFamily="@font/atma"
+        android:text="En breve los acercaremos a tu consultorio"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#25982A"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnBackToMenu"
+        android:text="Volver al Menú"
+        android:fontFamily="@font/atma"
+        android:textColor="#041120"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:includeFontPadding="true"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="70dp"
+        android:layout_weight="2"
+        android:backgroundTint="#ffc9c9" />
+
+
+
+
+</LinearLayout>
