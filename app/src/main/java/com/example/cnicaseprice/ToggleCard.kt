@@ -2,7 +2,6 @@ package com.example.cnicaseprice
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 

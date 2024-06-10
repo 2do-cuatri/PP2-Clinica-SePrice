@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical"
-    android:id="@+id/mainLayout">
+    android:orientation="vertical">
 
 
     <TextView
@@ -19,7 +18,7 @@
         android:text="Insumos"
         android:textAlignment="center"
         android:textColor="#0c0c0c"
-        android:textSize="60dp" />
+        android:textSize="60sp" />
 
     <GridLayout
     android:layout_width="wrap_content"
@@ -48,7 +47,6 @@
             >
 
             <TextView
-                android:id="@+id/text_view_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -88,7 +86,6 @@
             >
 
             <TextView
-                android:id="@+id/text_view_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Insumo B"
@@ -125,7 +122,6 @@
             android:layout_gravity="center">
 
             <TextView
-                android:id="@+id/text_view_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Insumo C"
@@ -162,7 +158,6 @@
             android:layout_gravity="center">
 
             <TextView
-                android:id="@+id/text_view_7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Insumo D"

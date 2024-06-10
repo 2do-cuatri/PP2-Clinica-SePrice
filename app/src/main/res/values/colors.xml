@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
     <color name="toggle_on_background_color">#FFC107</color>
     <color name="toggle_border_color">#020000</color>
     <color name="toggle_off_background_color">#E4D9D8</color>

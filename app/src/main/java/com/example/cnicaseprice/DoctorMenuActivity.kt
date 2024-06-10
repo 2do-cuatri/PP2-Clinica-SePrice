@@ -22,7 +22,7 @@ class DoctorMenuActivity : AppCompatActivity() {
         val suppliesButton = findViewById<Button>(R.id.btnSupplies)
 
         suppliesButton.setOnClickListener {
-            var intent = Intent(this, SuppliesActivity::class.java)
+            val intent = Intent(this, SuppliesActivity::class.java)
             startActivity(intent)
         }
 
