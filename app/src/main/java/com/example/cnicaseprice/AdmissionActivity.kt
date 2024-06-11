@@ -4,12 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class AdmissionActivity : AppCompatActivity() {
     private lateinit var databaseHelper: DataBase
@@ -25,7 +22,7 @@ class AdmissionActivity : AppCompatActivity() {
             try {
                 databaseHelper = DataBase(this)
                 val patient = databaseHelper.getPatient(dni.text.toString(), os.text.toString())
-                if (!patient.DNI.isNullOrEmpty()) {
+                if (patient.DNI.isNotEmpty()) {
                     val intent1 = Intent(this, PatientActivity::class.java)
                     intent1.putExtra("dni", patient.DNI)
                     intent1.putExtra("name", patient.Nombre + patient.Apellido)

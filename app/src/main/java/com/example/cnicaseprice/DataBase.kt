@@ -137,7 +137,7 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         if (dni.isNullOrEmpty() && os.isNullOrEmpty()) throw Exception("Debe indicar DNI y/o Nro de Obra Social")
 
         val cursor = db.rawQuery("SELECT * FROM $TABLE_PACIENTE WHERE $COLUMN_DNI = ? OR $COLUMN_OS = ? LIMIT 1", arrayOf(dni, os))
-        if (cursor.count === 1) {
+        if (cursor.count == 1) {
             cursor.moveToFirst()
             val patient = Paciente(
                 cursor.getString(0),
@@ -145,7 +145,13 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
                 cursor.getString(2),
                 cursor.getString(3)
             )
+            db.close()
+            cursor.close()
             return patient
-        } else throw Exception("Paciente no encontrado")
+        } else {
+            db.close()
+            cursor.close()
+            throw Exception("Paciente no encontrado")
+        }
     }
 }
