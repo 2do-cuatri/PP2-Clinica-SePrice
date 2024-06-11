@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".DoctorPatientsActivity"
     android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".AdminMenuActivity">
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/txtDoctorPatients"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_weight="1"
         android:fontFamily="@font/atma"
-        android:text="Menu Personal Médico"
+        android:text="Mis Pacientes"
         android:textAlignment="center"
         android:textColor="#0c0c0c"
-        android:textSize="60sp" />
+        android:textSize="60dp" />
 
     <Button
-        android:id="@+id/btnPatientMed"
-        android:text="Mis Pacientes"
+        android:id="@+id/btnWaitingRoom"
+        android:text="Sala de Espera"
         android:fontFamily="@font/atma"
         android:textSize="30sp"
         android:textColor="#0c0c0c"
@@ -36,8 +38,8 @@
 
 
     <Button
-        android:id="@+id/btnSupplies"
-        android:text="Insumos"
+        android:id="@+id/btnMedicalHistory"
+        android:text="Historia Clínica"
         android:fontFamily="@font/atma"
         android:textSize="30sp"
         android:textColor="#0c0c0c"
@@ -51,7 +53,7 @@
         android:includeFontPadding="true"/>
 
     <Button
-        android:id="@+id/btnBackMainDM"
+        android:id="@+id/btnBackDMP"
         android:text="Volver"
         android:fontFamily="@font/atma"
         android:textSize="24sp"

@@ -13,7 +13,22 @@
         android:theme="@style/Theme.CínicaSePrice"
         tools:targetApi="31">
         <activity
+            android:name=".SuppliesConfirmActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MedicalHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MHAccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WaitingRoomActivity"
+            android:exported="false" />
+        <activity
             android:name=".SuppliesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DoctorPatientsActivity"
             android:exported="false" />
         <activity
             android:name=".DoctorMenuActivity"

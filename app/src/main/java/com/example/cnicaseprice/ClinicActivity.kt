@@ -12,15 +12,20 @@ class ClinicActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_clinic)
 
-        val button10 = findViewById<Button>(R.id.btnAppointment)
-        button10.setOnClickListener{
-            val intent10 = Intent(this, AppointmentActivity::class.java)
-            startActivity(intent10)
+        val button1 = findViewById<Button>(R.id.btnAppointment)
+        button1.setOnClickListener{
+            val intent1 = Intent(this, AppointmentActivity::class.java)
+            startActivity(intent1)
         }
-        val button11 = findViewById<Button>(R.id.btnAppointmentO)
-        button11.setOnClickListener{
-            val intent11 = Intent(this, AppointmentActivity::class.java)
-            startActivity(intent11)
+        val button2 = findViewById<Button>(R.id.btnAppointmentO)
+        button2.setOnClickListener{
+            val intent2 = Intent(this, AppointmentActivity::class.java)
+            startActivity(intent2)
+        }
+        val button3 = findViewById<Button>(R.id.btnBackAdmMenuC)
+        button3.setOnClickListener{
+            val intent3 = Intent(this, AdminMenuActivity::class.java)
+            startActivity(intent3)
         }
     }
 }
