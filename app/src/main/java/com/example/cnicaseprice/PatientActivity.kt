@@ -1,7 +1,9 @@
 package com.example.cnicaseprice
 
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +29,12 @@ class PatientActivity : AppCompatActivity() {
         nomPat.text = intent.getStringExtra("name")
         dniPat.text = intent.getStringExtra("dni")
         osPat.text = intent.getStringExtra("os")
+
+        val btnBack = findViewById<Button>(R.id.btnBackMain)
+        btnBack.setOnClickListener{
+            val intent2 = Intent(this, AdminMenuActivity::class.java)
+            startActivity(intent2)
+        }
 
 
     }
