@@ -7,27 +7,49 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
+        // General DB config
         private const val DATABASE_NAME = "SePrice"
         private const val DATABASE_VERSION = 1
+
+        // User table
         private const val TABLE_USER = "User"
         private const val COLUMN_ID = "id"
         private const val COLUMN_USERNAME = "username"
         private const val COLUMN_PASSWORD = "password"
         private const val COLUMN_TYPE = "type"
+
+        // Paciente table
+        private const val TABLE_PACIENTE = "Patient"
+        private const val COLUMN_DNI = "DNI"
+        private const val COLUMN_OS = "OS"
+        private const val COLUMN_NOMBRE = "Nombre"
+        private const val COLUMN_APELLIDO = "Apellido"
+
+        // Init values
         var loggedUser: Usuario? = null
     }
 
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val sql = "CREATE TABLE $TABLE_USER" +
+        // User
+        val createUserTable = "CREATE TABLE $TABLE_USER" +
                   "($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COLUMN_USERNAME TEXT, $COLUMN_PASSWORD TEXT, $COLUMN_TYPE TEXT)"
-        db?.execSQL(sql)
+
+        db?.execSQL(createUserTable)
         db?.execSQL("INSERT INTO $TABLE_USER ($COLUMN_USERNAME, $COLUMN_PASSWORD, $COLUMN_TYPE) VALUES ('admin', 'admin', 'admin')")
         db?.execSQL("INSERT INTO $TABLE_USER ($COLUMN_USERNAME, $COLUMN_PASSWORD, $COLUMN_TYPE) VALUES ('medico', 'medico', 'medico')")
+
+        // Paciente
+        val createPacienteTable = "CREATE TABLE $TABLE_PACIENTE" +
+                "($COLUMN_DNI TEXT PRIMARY KEY, $COLUMN_OS TEXT, $COLUMN_NOMBRE TEXT, $COLUMN_APELLIDO TEXT)"
+
+        db?.execSQL(createPacienteTable)
+        db?.execSQL("INSERT INTO $TABLE_PACIENTE ($COLUMN_DNI, $COLUMN_OS, $COLUMN_NOMBRE, $COLUMN_APELLIDO) VALUES ('35973905', '2200', 'Santiago', 'Rubio')")
    }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("DROP TABLE IF EXISTS $TABLE_USER")
+        db?.execSQL("DROP TABLE IF EXISTS $TABLE_PACIENTE")
         onCreate(db)
     }
 
@@ -108,5 +130,22 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         } else {
             "Borrado exitoso"
         }
+    }
+
+    fun getPatient(dni: String?, os: String?): Paciente {
+        val db = this.readableDatabase
+        if (dni.isNullOrEmpty() && os.isNullOrEmpty()) throw Exception("Debe indicar DNI y/o Nro de Obra Social")
+
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_PACIENTE WHERE $COLUMN_DNI = ? OR $COLUMN_OS = ? LIMIT 1", arrayOf(dni, os))
+        if (cursor.count === 1) {
+            cursor.moveToFirst()
+            val patient = Paciente(
+                cursor.getString(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3)
+            )
+            return patient
+        } else throw Exception("Paciente no encontrado")
     }
 }
