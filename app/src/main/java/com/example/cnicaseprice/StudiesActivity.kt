@@ -16,13 +16,18 @@ class StudiesActivity : AppCompatActivity() {
 
         val button1 = findViewById<Button>(R.id.btnAppointmentS)
         button1.setOnClickListener{
-            val intent1 = Intent(this, StudyActivity::class.java)
+            val intent1 = Intent(this, AppointmentActivity::class.java)
             startActivity(intent1)
         }
-        val button2 = findViewById<Button>(R.id.btnBackAdmMenuE)
+        val button2 = findViewById<Button>(R.id.btnVoucher)
         button2.setOnClickListener{
-            val intent2 = Intent(this, AdminMenuActivity::class.java)
+            val intent2 = Intent(this, StudyVoucherActivity::class.java)
             startActivity(intent2)
+        }
+        val button3 = findViewById<Button>(R.id.btnBackAdmMenuE)
+        button3.setOnClickListener{
+            val intent3 = Intent(this, AdminMenuActivity::class.java)
+            startActivity(intent3)
         }
     }
 }

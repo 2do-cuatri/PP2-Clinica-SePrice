@@ -13,6 +13,18 @@
         android:theme="@style/Theme.CínicaSePrice"
         tools:targetApi="31">
         <activity
+            android:name=".MHEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PatientDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VoucherPrintingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StudyVoucherActivity"
+            android:exported="false" />
+        <activity
             android:name=".SuppliesConfirmActivity"
             android:exported="false" />
         <activity
@@ -32,9 +44,6 @@
             android:exported="false" />
         <activity
             android:name=".DoctorMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".StudyActivity"
             android:exported="false" />
         <activity
             android:name=".AppointmentActivity"

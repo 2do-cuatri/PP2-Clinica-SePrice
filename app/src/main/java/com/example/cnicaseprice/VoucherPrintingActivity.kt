@@ -8,25 +8,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MedicalHistoryActivity : AppCompatActivity() {
+class VoucherPrintingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_medical_history)
+        setContentView(R.layout.activity_voucher_printing)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val button1 = findViewById<Button>(R.id.btnEdit)
+        val button1 = findViewById<Button>(R.id.btnBackSV)
         button1.setOnClickListener{
-            val intent1 = Intent(this, MHEditActivity::class.java)
+            val intent1 = Intent(this, StudyVoucherActivity::class.java)
             startActivity(intent1)
-        }
-        val button2 = findViewById<Button>(R.id.btnBackMH)
-        button2.setOnClickListener{
-            val intent2 = Intent(this, MHAccessActivity::class.java)
-            startActivity(intent2)
         }
     }
 }
