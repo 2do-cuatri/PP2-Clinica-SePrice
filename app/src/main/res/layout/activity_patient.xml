@@ -6,88 +6,119 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PatientActivity"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:gravity="fill_vertical"
+    android:orientation="vertical"
+    android:padding="24dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/txtNomPac"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@android:string/unknownName"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="34sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/dniIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="DNI: "
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/txtDniPac"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@android:string/unknownName"
+            android:gravity="center"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/osIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Nro OS: "
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/txtOsPac"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@android:string/unknownName"
+            android:textSize="20sp" />
+
+    </LinearLayout>
 
 
-    <EditText
-        android:id="@+id/txtNombreP"
-        android:text=""
-        android:fontFamily="@font/atma"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:textAlignment="center"
-        android:layout_width="260dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        android:background="@drawable/rounded" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        >
 
-    <EditText
-        android:id="@+id/txtDNIP"
-        android:text="DNI"
-        android:fontFamily="@font/atma"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        android:layout_width="260dp"
-        android:layout_height="20dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:background="@drawable/rounded" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/txtSocialNP"
-        android:text=""
-        android:fontFamily="@font/atma"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        android:layout_width="260dp"
-        android:layout_height="20dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:background="@drawable/rounded" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Turnos y estudios vigentes" />
 
-    <TextView
-        android:id="@+id/txtAppointmentsAndStudies"
-        android:layout_width="360dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        android:fontFamily="@font/atma"
-        android:text="Turnos y Estudios vigentes"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#0C0C0C"
-        android:textSize="24sp" />
+            <ScrollView
+                android:id="@+id/scrlContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <ListView
-        android:layout_width="260dp"
-        android:layout_height="156dp"
-        android:layout_weight="3"
-        android:fontFamily="@font/atma"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="#C61414"/>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
+                </TableLayout>
+            </ScrollView>
 
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnBackMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:backgroundTint="#E3C5E8"
+            android:fontFamily="@font/atma"
+            android:includeFontPadding="true"
+            android:text="Volver"
+            android:textAlignment="center"
+            android:textColor="#0c0c0c"
+            android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/btnBackAdm"
-        android:text="Volver"
-        android:fontFamily="@font/atma"
-        android:textColor="#041120"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        android:includeFontPadding="true"
-        android:layout_width="260dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="70dp"
-        android:layout_weight="1"
-        android:backgroundTint="#ffc9c9" />
-
+    </LinearLayout>
 </LinearLayout>
