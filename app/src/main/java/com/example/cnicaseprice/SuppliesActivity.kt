@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 private var stock = mutableListOf<Supply>()
+private var selectedSupplies = arrayOf(false, false, false, false, false, false)
 private var supplyButtons= mutableListOf<Button>()
 
 
@@ -45,12 +46,9 @@ class SuppliesActivity : AppCompatActivity() {
             }
         }
 
-        stock.add(Supply("Insumo A", 0, false))
-        stock.add(Supply("Insumo B", 0, false))
-        stock.add(Supply("Insumo C", 0, false))
-        stock.add(Supply("Insumo D", 0, false))
-        stock.add(Supply("Insumo E", 0, false))
-        stock.add(Supply("Insumo F", 0, false))
+        // Inicializar stock
+        val db = DataBase(this)
+        stock = db.getSupplies()
 
 
         supplyButtons.add(findViewById(R.id.btnSupply1))
@@ -62,8 +60,8 @@ class SuppliesActivity : AppCompatActivity() {
 
         supplyButtons.forEachIndexed { index, button ->
             button.setOnClickListener {
-                stock[index].selected = !stock[index].selected
-                if (stock[index].selected) {
+                selectedSupplies[index] = !selectedSupplies[index]
+                if (selectedSupplies[index]) {
                     button.setBackgroundColor(Color.parseColor("#6591B3"))
                 } else {
                     button.setBackgroundColor(Color.parseColor("#DACACA"))
@@ -91,6 +89,8 @@ class SuppliesActivity : AppCompatActivity() {
         stock.forEach {
             it.quantity = 50
         }
+        val db = DataBase(this)
+        db.updateSupplies(stock)
         updateButtonsText()
     }
 
@@ -99,7 +99,7 @@ class SuppliesActivity : AppCompatActivity() {
         var newStock = stock.toMutableList()
         var somethingSelected = false
         supplyButtons.forEachIndexed { index, _ ->
-            if (stock[index].selected) {
+            if (selectedSupplies[index]) {
                 somethingSelected = true
                 if(stock[index].quantity > 0) {
                     newStock[index].quantity = stock[index].quantity - 1
@@ -113,6 +113,8 @@ class SuppliesActivity : AppCompatActivity() {
         }
         if(error == null){
             stock = newStock.toMutableList()
+            val db = DataBase(this)
+            db.updateSupplies(stock)
         }
         return error
     }

@@ -25,6 +25,11 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         private const val COLUMN_NOMBRE = "Nombre"
         private const val COLUMN_APELLIDO = "Apellido"
 
+        // Supply table
+        private const val TABLE_SUPPLY = "Supply"
+        private const val SUPPLY_COLUMN_NAME = "Name"
+        private const val SUPPLY_COLUMN_QUANTITY = "Quantity"
+
         // Init values
         var loggedUser: Usuario? = null
     }
@@ -45,7 +50,18 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
 
         db?.execSQL(createPacienteTable)
         db?.execSQL("INSERT INTO $TABLE_PACIENTE ($COLUMN_DNI, $COLUMN_OS, $COLUMN_NOMBRE, $COLUMN_APELLIDO) VALUES ('35973905', '2200', 'Santiago', 'Rubio')")
-   }
+
+        // Supply
+        val createSupplyTable = "CREATE TABLE $TABLE_SUPPLY" +
+                "($SUPPLY_COLUMN_NAME TEXT PRIMARY KEY, $SUPPLY_COLUMN_QUANTITY INTEGER)"
+        db?.execSQL(createSupplyTable)
+        db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo A', 0)")
+        db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo B', 10)")
+        db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo C', 25)")
+        db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo D', 30)")
+        db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo E', 40)")
+        db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo F', 50)")
+    }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("DROP TABLE IF EXISTS $TABLE_USER")
@@ -153,5 +169,42 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
             cursor.close()
             throw Exception("Paciente no encontrado")
         }
+    }
+
+    fun getSupplies():MutableList<Supply>{
+        val bd = this.readableDatabase
+        val list = mutableListOf<Supply>()
+        val sql = "SELECT * FROM $TABLE_SUPPLY"
+        val cursor = bd.rawQuery(sql, null)
+        if(cursor.moveToFirst()){
+            do {
+                val supply = Supply(
+                    cursor.getString(0),
+                    cursor.getInt(1)
+                )
+                list.add(supply)
+            }
+                while(cursor.moveToNext())
+            bd.close()
+            cursor.close()
+        }
+        return list
+    }
+
+    fun updateSupplies(supplies: List<Supply>){
+        val db = this.writableDatabase
+        db.beginTransaction()
+        try {
+            for (supply in supplies) {
+                val contentValues = ContentValues()
+                contentValues.put(SUPPLY_COLUMN_QUANTITY, supply.quantity)
+                db.update(TABLE_SUPPLY, contentValues, "$SUPPLY_COLUMN_NAME = ?", arrayOf(supply.name))
+            }
+            db.setTransactionSuccessful()
+        } finally {
+            db.endTransaction()
+            db.close()
+        }
+
     }
 }
