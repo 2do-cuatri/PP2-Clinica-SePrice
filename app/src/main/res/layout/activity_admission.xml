@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -9,6 +10,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/txtPatientAdm"
         android:layout_width="370dp"
         android:layout_height="35dp"
         android:layout_marginTop="70dp"
@@ -22,30 +24,32 @@
         android:textSize="45sp" />
 
     <EditText
-        android:inputType="text"
-        android:hint="DNI"
-        android:fontFamily="@font/atma"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:textAlignment="center"
+        android:id="@+id/txtDni"
         android:layout_width="260dp"
         android:layout_height="20dp"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:background="@drawable/rounded" />
+        android:background="@drawable/rounded"
+        android:fontFamily="@font/atma"
+        android:hint="DNI"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
 
     <EditText
-        android:inputType="text"
-        android:hint="Nro Obra Social"
-        android:fontFamily="@font/atma"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:textAlignment="center"
+        android:id="@+id/txtSocialNumber"
         android:layout_width="260dp"
         android:layout_height="20dp"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:background="@drawable/rounded" />
+        android:background="@drawable/rounded"
+        android:fontFamily="@font/atma"
+        android:hint="Nro Obra Social"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/btnFindPatient"
