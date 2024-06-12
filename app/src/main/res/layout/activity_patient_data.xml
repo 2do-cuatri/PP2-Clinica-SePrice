@@ -75,7 +75,7 @@
         android:background="@drawable/rounded" />
 
     <Button
-        android:id="@+id/btnContinuePD"
+        android:id="@+id/btnContinueCM"
         android:text="Continuar"
         android:fontFamily="@font/atma"
         android:textColor="#041120"
@@ -89,7 +89,7 @@
         android:backgroundTint="#b2f2bb" />
 
     <Button
-        android:id="@+id/btnBackPD"
+        android:id="@+id/btnBackApp"
         android:text="Volver"
         android:fontFamily="@font/atma"
         android:textSize="24sp"

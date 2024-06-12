@@ -20,7 +20,7 @@ class AppointmentActivity : AppCompatActivity() {
         }
         val button1 = findViewById<Button>(R.id.btnContinueA)
         button1.setOnClickListener{
-            val intent1 = Intent(this, VoucherPrintingActivity::class.java)
+            val intent1 = Intent(this, PatientDataActivity::class.java)
             startActivity(intent1)
         }
         val button2 = findViewById<Button>(R.id.btnBackToMenu)
