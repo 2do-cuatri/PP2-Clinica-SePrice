@@ -7,4 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".StudyActivity">
 
+    <ListView
+        android:id="@+id/lvStudies"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
