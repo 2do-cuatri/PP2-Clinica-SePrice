@@ -18,15 +18,6 @@ class AppointmentActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val button1 = findViewById<Button>(R.id.btnContinueA)
-        button1.setOnClickListener{
-            val intent1 = Intent(this, PatientDataActivity::class.java)
-            startActivity(intent1)
-        }
-        val button2 = findViewById<Button>(R.id.btnBackToMenu)
-        button2.setOnClickListener{
-            val intent2 = Intent(this, AdminMenuActivity::class.java)
-            startActivity(intent2)
-        }
+
     }
 }
