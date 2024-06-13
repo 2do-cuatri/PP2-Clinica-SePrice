@@ -1,6 +1,8 @@
 package com.example.cnicaseprice
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,6 +17,16 @@ class MedicalHistoryActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        val button1 = findViewById<Button>(R.id.btnEdit)
+        button1.setOnClickListener{
+            val intent1 = Intent(this, MHEditActivity::class.java)
+            startActivity(intent1)
+        }
+        val button2 = findViewById<Button>(R.id.btnBackMH)
+        button2.setOnClickListener{
+            val intent2 = Intent(this, MHAccessActivity::class.java)
+            startActivity(intent2)
         }
     }
 }

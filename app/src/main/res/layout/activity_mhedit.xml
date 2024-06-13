@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MedicalHistoryActivity"
+    tools:context=".MHEditActivity"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -24,7 +24,7 @@
         android:layout_weight="1"
         android:background="@drawable/rounded" />
 
-        <EditText
+    <EditText
         android:id="@+id/txtDNIMH"
         android:text="DNI"
         android:fontFamily="@font/atma"
@@ -58,7 +58,7 @@
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:fontFamily="@font/atma"
-        android:text="Entradas Historia Clínica"
+        android:text="Editando Historia Clínica"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#0C0C0C"
@@ -74,8 +74,8 @@
         android:textColor="#C61414"/>
 
     <Button
-        android:id="@+id/btnEdit"
-        android:text="Editar"
+        android:id="@+id/btnSave"
+        android:text="Guardar Cambios"
         android:fontFamily="@font/atma"
         android:textColor="#041120"
         android:textSize="24sp"
@@ -88,8 +88,8 @@
         android:backgroundTint="#b2f2bb" />
 
     <Button
-        android:id="@+id/btnBackMH"
-        android:text="Volver"
+        android:id="@+id/btnCancel"
+        android:text="Cancelar"
         android:fontFamily="@font/atma"
         android:textColor="#041120"
         android:textSize="24sp"
