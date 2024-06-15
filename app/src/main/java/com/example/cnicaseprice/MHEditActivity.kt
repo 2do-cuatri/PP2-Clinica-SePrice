@@ -29,7 +29,7 @@ class MHEditActivity : AppCompatActivity() {
             }else{
                 val entry = editText.text.toString()
                 val db = DataBase(this)
-                db.addMHEntry(intent.getStringExtra("dni")!!, "Javier Rodriguez", entry)
+                db.addMHEntry(intent.getStringExtra("dni")!!, DataBase.loggedUser!!.nombre, entry)
                 val intent1 = Intent(this, MedicalHistoryActivity::class.java)
                 startActivity(intent1)
             }
