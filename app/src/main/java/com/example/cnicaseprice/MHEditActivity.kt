@@ -3,6 +3,8 @@ package com.example.cnicaseprice
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,8 +22,18 @@ class MHEditActivity : AppCompatActivity() {
         }
         val button1 = findViewById<Button>(R.id.btnSave)
         button1.setOnClickListener{
-            val intent1 = Intent(this, MedicalHistoryActivity::class.java)
-            startActivity(intent1)
+            val editText = findViewById<EditText>(R.id.editEntry)
+
+            if (editText.text.isEmpty()) {
+                Toast.makeText(this, "No puede crear etradas vacias", Toast.LENGTH_SHORT).show()
+            }else{
+                val entry = editText.text.toString()
+                val db = DataBase(this)
+                db.addMHEntry(intent.getStringExtra("dni")!!, DataBase.loggedUser!!.nombre, entry)
+                val intent1 = Intent(this, MedicalHistoryActivity::class.java)
+                startActivity(intent1)
+            }
+
         }
         val button2 = findViewById<Button>(R.id.btnCancel)
         button2.setOnClickListener{
