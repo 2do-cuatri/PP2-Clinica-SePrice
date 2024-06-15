@@ -13,12 +13,6 @@
         android:theme="@style/Theme.CínicaSePrice"
         tools:targetApi="31">
         <activity
-            android:name=".ConfirmMessageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".StudyNFActivity"
-            android:exported="false" />
-        <activity
             android:name=".PatientNFActivity"
             android:exported="false" />
         <activity
