@@ -32,7 +32,8 @@ class StudyAdapter(val studies: MutableList<Study>, val activity: Activity): Bas
         val s = this.getItem(position)
         txtStudyName.text = s.name
         btnRegister.setOnClickListener {
-            val intent = Intent(view.context, PatientActivity::class.java)
+            val intent = Intent(view.context, StudyActivity::class.java)
+            intent.putExtra("studyId", s.id);
             view.context.startActivity(intent)
         }
         return view;

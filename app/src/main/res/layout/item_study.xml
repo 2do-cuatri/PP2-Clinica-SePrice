@@ -29,9 +29,9 @@
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="155dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="159dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:text="Registrar Turno"
         app:layout_constraintEnd_toEndOf="parent"

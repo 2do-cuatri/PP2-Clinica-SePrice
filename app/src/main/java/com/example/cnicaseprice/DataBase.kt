@@ -4,13 +4,17 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.os.Build
+import androidx.annotation.RequiresApi
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 import java.util.Optional
 
 class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         // General DB config
         private const val DATABASE_NAME = "SePrice"
-        private const val DATABASE_VERSION = 2
+        private const val DATABASE_VERSION = 4
 
         // Generic columns
         private const val COLUMN_ID = "id"
@@ -74,7 +78,7 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
 
         // Appointments
         val createAppointmentsTable = "CREATE TABLE $TABLE_APPOINTMENTS" +
-                "($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COLUMN_PATIENT_DNI TEXT, $COLUMN_DATE TEXT, $COLUMN_TYPE TEXT, FOREIGN KEY($COLUMN_PATIENT_DNI) REFERENCES $TABLE_PACIENTE($COLUMN_DNI))"
+                "($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COLUMN_PATIENT_DNI TEXT, $COLUMN_DATE TEXT, $COLUMN_STUDY_ID  INTEGER, FOREIGN KEY($COLUMN_PATIENT_DNI) REFERENCES $TABLE_PACIENTE($COLUMN_DNI), FOREIGN KEY($COLUMN_STUDY_ID) REFERENCES $TABLE_STUDIES($COLUMN_ID))"
         db?.execSQL(createAppointmentsTable)
 
     }
@@ -189,7 +193,7 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         }
     }
 
-    fun createPatient(dni: String, os: String?, nombre: String, apellido: String): Long {
+    fun createPatient(dni: String, os: String?, nombre: String, apellido: String): Paciente {
         val db = this.writableDatabase
         val container = ContentValues()
 
@@ -202,15 +206,16 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         return if(result == (-1).toLong()){
             throw Exception("Error al crear paciente")
         } else {
-            result
+            return Paciente(dni, os.toString(), nombre, apellido)
         }
     }
 
     fun createAppointment(studyId: String, date: String): Long {
+        val f = SimpleDateFormat("dd/MM/yy HH:mm")
         val db = this.writableDatabase
         val container = ContentValues()
-        container.put(COLUMN_STUDY_ID, studyId)
-        container.put(COLUMN_DATE, date)
+        container.put(COLUMN_STUDY_ID, studyId.toInt())
+        container.put(COLUMN_DATE, f.parse(date).toString())
 
         val result = db.insert(TABLE_APPOINTMENTS, null, container)
         return if(result == (-1).toLong()){
@@ -226,8 +231,8 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
             p = getPatient(dni, os)
         } catch(e: Exception) {
             if (dni.isNullOrEmpty() || nombre.isNullOrEmpty() || apellido.isNullOrEmpty()) throw Exception("Datos de paciente insuficientes")
-            val newPatientDni = createPatient(dni, os, nombre, apellido)
-            p = getPatient(newPatientDni.toString(), null)
+            val pData = createPatient(dni, os, nombre, apellido)
+            p = getPatient(pData.DNI, pData.OS)
         }
         val db = this.writableDatabase
         val container = ContentValues()

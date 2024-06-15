@@ -19,6 +19,9 @@
             android:name=".MedicalHistoryActivity"
             android:exported="false" />
         <activity
+            android:name=".ConfirmMessageActivity"
+            android:exported="false" />
+        <activity
             android:name=".MHAccessActivity"
             android:exported="false" />
         <activity
@@ -47,9 +50,6 @@
             android:exported="false" />
         <activity
             android:name=".LaboratoryActivity"
-            android:exported="false" />
-        <activity
-            android:name=".StudiesActivity"
             android:exported="false" />
         <activity
             android:name=".AdmissionActivity"

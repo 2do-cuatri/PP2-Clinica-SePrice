@@ -7,8 +7,77 @@
     android:layout_height="match_parent"
     tools:context=".StudyActivity">
 
-    <ListView
-        android:id="@+id/lvStudies"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/txtDate"
+            style="@style/inputBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Fecha"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/txtTime"
+            style="@style/inputBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Hora"
+            android:inputType="time" />
+
+        <EditText
+            android:id="@+id/txtFirstName"
+            style="@style/inputBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre" />
+
+        <EditText
+            android:id="@+id/txtLastName"
+            style="@style/inputBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Apellido" />
+
+        <EditText
+            android:id="@+id/txtDni"
+            android:hint="DNI"
+            style="@style/inputBtn" />
+
+        <EditText
+            android:id="@+id/txtSocialNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded"
+            android:fontFamily="@font/atma"
+            android:hint="Nro Obra Social"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btnSetAppointment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continuar" />
+
+        <Button
+            android:id="@+id/btnBackAppointments"
+            style="@style/Theme.CínicaSePrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Volver" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

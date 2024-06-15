@@ -40,7 +40,7 @@
 
     <Button
         android:id="@+id/btnStudies"
-        android:text="Estudios"
+        android:text="Registrar turno"
         android:fontFamily="@font/atma"
         android:textSize="24sp"
         android:textColor="#0c0c0c"
