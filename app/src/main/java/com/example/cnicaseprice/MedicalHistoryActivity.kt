@@ -26,9 +26,10 @@ class MedicalHistoryActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val button1 = findViewById<Button>(R.id.btnEdit)
+        val button1 = findViewById<Button>(R.id.btnNewEntry)
         button1.setOnClickListener{
             val intent1 = Intent(this, MHEditActivity::class.java)
+            intent1.putExtra("dni", intent.getStringExtra("dni"))
             startActivity(intent1)
         }
         val button2 = findViewById<Button>(R.id.btnBackMH)

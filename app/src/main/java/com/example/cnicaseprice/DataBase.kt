@@ -4,6 +4,9 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
@@ -251,5 +254,19 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
 
         }
         return list
+    }
+
+    fun addMHEntry(dni: String, doctor: String, detail: String){
+        //adds new entry to the database
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(MH_COLUMN_DNI, dni)
+        contentValues.put(MH_COLUMN_DATE, SimpleDateFormat("dd/MM/yy", Locale.getDefault()).format(Date()))
+        contentValues.put(MH_COLUMN_DOCTOR, doctor)
+        contentValues.put(MH_COLUMN_DETAIL, detail)
+        db.insert(TABLE_MH, null, contentValues)
+        db.close()
+
+
     }
 }

@@ -75,8 +75,8 @@
         android:textColor="#C61414"/>
 
     <Button
-        android:id="@+id/btnEdit"
-        android:text="Editar"
+        android:id="@+id/btnNewEntry"
+        android:text="Nueva Entrada"
         android:fontFamily="@font/atma"
         android:textColor="#041120"
         android:textSize="24sp"
