@@ -2,7 +2,13 @@ package com.example.cnicaseprice
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ListAdapter
+import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -38,10 +44,30 @@ class MedicalHistoryActivity : AppCompatActivity() {
         val textOS = findViewById<TextView>(R.id.txtSocialNMH)
         textOS.text = intent.getStringExtra("os")
 
-//        updateMHView()
+        updateMHView()
     }
 
-//    private fun updateMHView() {
-//        TODO("Not yet implemented")
-//    }
+    private fun updateMHView() {
+        val mhListView = findViewById<ListView>(R.id.listMH)
+        val dbHelper= DataBase(this)
+        val mhList = dbHelper.getAllMH(intent.getStringExtra("dni")!!)
+        val adapter = object : ArrayAdapter<MHEntry>(this, 0, mhList) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.mh_list_item, parent, false) // Replace with your item layout
+                val item = getItem(position) // Get the MHEntry object for the current position
+
+                val dateTextView = view.findViewById<TextView>(R.id.dateTextView) // Replace with your view IDs
+                val doctorTextView = view.findViewById<TextView>(R.id.doctorTextView) // Replace with your view IDs
+                val detailTextView = view.findViewById<TextView>(R.id.detailTextView)
+
+                dateTextView.text = item?.date
+                doctorTextView.text = item?.doctor
+                detailTextView.text = item?.detail
+
+                return view
+            }
+        }
+        mhListView.adapter = adapter
+    }
+
 }

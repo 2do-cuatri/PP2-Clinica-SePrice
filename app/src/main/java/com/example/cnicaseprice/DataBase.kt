@@ -30,6 +30,15 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         private const val SUPPLY_COLUMN_NAME = "Name"
         private const val SUPPLY_COLUMN_QUANTITY = "Quantity"
 
+        // Medical History table
+        private const val TABLE_MH = "MedicalHistory"
+        private const val MH_COLUMN_ID = "ID"
+        private const val MH_COLUMN_DNI = "DNI"
+        private const val MH_COLUMN_DATE = "Date"
+        private const val MH_COLUMN_DOCTOR = "Doctor"
+        private const val MH_COLUMN_DETAIL = "Detail"
+
+
         // Init values
         var loggedUser: Usuario? = null
     }
@@ -61,11 +70,23 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo D', 30)")
         db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo E', 40)")
         db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo F', 50)")
+
+        // Medical History
+        val createMHTable = "CREATE TABLE $TABLE_MH" +
+                "($MH_COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, $MH_COLUMN_DNI TEXT, $MH_COLUMN_DATE TEXT, $MH_COLUMN_DOCTOR TEXT, $MH_COLUMN_DETAIL TEXT)"
+        db?.execSQL(createMHTable)
+
+
+        db?.execSQL("INSERT INTO $TABLE_MH ($MH_COLUMN_DNI, $MH_COLUMN_DATE, $MH_COLUMN_DOCTOR, $MH_COLUMN_DETAIL) VALUES ('1','10/05/2023','Javier Rodriguez','Lo revisé y estaba todo bien.')")
+        db?.execSQL("INSERT INTO $TABLE_MH ($MH_COLUMN_DNI, $MH_COLUMN_DATE, $MH_COLUMN_DOCTOR, $MH_COLUMN_DETAIL) VALUES ('1','10/06/2023','Javier Rodriguez','Lo revisé y le recomendé que duerma más.')")
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("DROP TABLE IF EXISTS $TABLE_USER")
         db?.execSQL("DROP TABLE IF EXISTS $TABLE_PACIENTE")
+        db?.execSQL("DROP TABLE IF EXISTS $TABLE_SUPPLY")
+        db?.execSQL("DROP TABLE IF EXISTS $TABLE_MH")
         onCreate(db)
     }
 
@@ -206,5 +227,29 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
             db.close()
         }
 
+    }
+
+    fun getAllMH(dni: String): MutableList<MHEntry> {
+        val bd = this.readableDatabase
+        val list = mutableListOf<MHEntry>()
+        val sql = "SELECT * FROM $TABLE_MH WHERE $MH_COLUMN_DNI = ?"
+        val cursor = bd.rawQuery(sql, arrayOf(dni))
+        if(cursor.moveToFirst()){
+            do {
+                val entry = MHEntry(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4)
+                )
+                list.add(entry)
+                }
+                while(cursor.moveToNext())
+            bd.close()
+            cursor.close()
+
+        }
+        return list
     }
 }
