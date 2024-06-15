@@ -49,7 +49,7 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
                 "($COLUMN_DNI TEXT PRIMARY KEY, $COLUMN_OS TEXT, $COLUMN_NOMBRE TEXT, $COLUMN_APELLIDO TEXT)"
 
         db?.execSQL(createPacienteTable)
-        db?.execSQL("INSERT INTO $TABLE_PACIENTE ($COLUMN_DNI, $COLUMN_OS, $COLUMN_NOMBRE, $COLUMN_APELLIDO) VALUES ('35973905', '2200', 'Santiago', 'Rubio')")
+        db?.execSQL("INSERT INTO $TABLE_PACIENTE ($COLUMN_DNI, $COLUMN_OS, $COLUMN_NOMBRE, $COLUMN_APELLIDO) VALUES ('1', '2200', 'Santiago', 'Rubio')")
 
         // Supply
         val createSupplyTable = "CREATE TABLE $TABLE_SUPPLY" +
@@ -148,7 +148,7 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         }
     }
 
-    fun getPatient(dni: String?, os: String?): Paciente {
+    fun getPatient(dni: String?, os: String ?= ""): Paciente {
         val db = this.readableDatabase
         if (dni.isNullOrEmpty() && os.isNullOrEmpty()) throw Exception("Debe indicar DNI y/o Nro de Obra Social")
 
