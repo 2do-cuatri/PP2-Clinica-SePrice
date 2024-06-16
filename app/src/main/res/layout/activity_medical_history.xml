@@ -1,10 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MedicalHistoryActivity">
+    tools:context=".MedicalHistoryActivity"
+    android:gravity="center"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/txtNombreMH"
+        android:layout_width="260dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/rounded"
+        android:fontFamily="@font/atma"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/txtDNIMH"
+        android:layout_width="260dp"
+        android:layout_height="20dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/rounded"
+        android:fontFamily="@font/atma"
+        android:text="DNI"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/txtSocialNMH"
+        android:layout_width="260dp"
+        android:layout_height="20dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/rounded"
+        android:fontFamily="@font/atma"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/txtMHistory"
+        android:layout_width="360dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/atma"
+        android:text="Entradas Historia Clínica"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#0C0C0C"
+        android:textSize="24sp" />
+
+    <ListView
+        android:id="@+id/listMH"
+        android:layout_width="260dp"
+        android:layout_height="156dp"
+        android:layout_weight="3"
+        android:fontFamily="@font/atma"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="#C61414"/>
+
+    <Button
+        android:id="@+id/btnNewEntry"
+        android:text="Nueva Entrada"
+        android:fontFamily="@font/atma"
+        android:textColor="#041120"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1.5"
+        android:backgroundTint="#b2f2bb" />
+
+    <Button
+        android:id="@+id/btnBackMH"
+        android:text="Volver"
+        android:fontFamily="@font/atma"
+        android:textColor="#041120"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:includeFontPadding="true"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="70dp"
+        android:layout_weight="1"
+        android:backgroundTint="#ffc9c9" />
+
+</LinearLayout>

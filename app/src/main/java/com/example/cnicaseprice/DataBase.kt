@@ -5,10 +5,10 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Build
-import androidx.annotation.RequiresApi
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.Optional
+import java.util.Date
+import java.util.Locale
 
 class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
@@ -41,6 +41,20 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         // Studies table
         private const val TABLE_STUDIES = "Studies"
         private const val COLUMN_NAME = "name"
+
+
+        // Supply table
+        private const val TABLE_SUPPLY = "Supply"
+        private const val SUPPLY_COLUMN_NAME = "Name"
+        private const val SUPPLY_COLUMN_QUANTITY = "Quantity"
+
+        // Medical History table
+        private const val TABLE_MH = "MedicalHistory"
+        private const val MH_COLUMN_ID = "ID"
+        private const val MH_COLUMN_DNI = "DNI"
+        private const val MH_COLUMN_DATE = "Date"
+        private const val MH_COLUMN_DOCTOR = "Doctor"
+        private const val MH_COLUMN_DETAIL = "Detail"
 
 
         // Init values
@@ -81,6 +95,28 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
                 "($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COLUMN_PATIENT_DNI TEXT, $COLUMN_DATE TEXT, $COLUMN_STUDY_ID  INTEGER, FOREIGN KEY($COLUMN_PATIENT_DNI) REFERENCES $TABLE_PACIENTE($COLUMN_DNI), FOREIGN KEY($COLUMN_STUDY_ID) REFERENCES $TABLE_STUDIES($COLUMN_ID))"
         db?.execSQL(createAppointmentsTable)
 
+        db?.execSQL("INSERT INTO $TABLE_PACIENTE ($COLUMN_DNI, $COLUMN_OS, $COLUMN_NOMBRE, $COLUMN_APELLIDO) VALUES ('1', '2200', 'Santiago', 'Rubio')")
+
+        // Supply
+        val createSupplyTable = "CREATE TABLE $TABLE_SUPPLY" +
+                "($SUPPLY_COLUMN_NAME TEXT PRIMARY KEY, $SUPPLY_COLUMN_QUANTITY INTEGER)"
+        db?.execSQL(createSupplyTable)
+        db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo A', 0)")
+        db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo B', 10)")
+        db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo C', 25)")
+        db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo D', 30)")
+        db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo E', 40)")
+        db?.execSQL("INSERT INTO $TABLE_SUPPLY ($SUPPLY_COLUMN_NAME, $SUPPLY_COLUMN_QUANTITY) VALUES ('Insumo F', 50)")
+
+        // Medical History
+        val createMHTable = "CREATE TABLE $TABLE_MH" +
+                "($MH_COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, $MH_COLUMN_DNI TEXT, $MH_COLUMN_DATE TEXT, $MH_COLUMN_DOCTOR TEXT, $MH_COLUMN_DETAIL TEXT)"
+        db?.execSQL(createMHTable)
+
+
+        db?.execSQL("INSERT INTO $TABLE_MH ($MH_COLUMN_DNI, $MH_COLUMN_DATE, $MH_COLUMN_DOCTOR, $MH_COLUMN_DETAIL) VALUES ('1','10/05/2023','Javier Rodriguez','Lo revisé y estaba todo bien.')")
+        db?.execSQL("INSERT INTO $TABLE_MH ($MH_COLUMN_DNI, $MH_COLUMN_DATE, $MH_COLUMN_DOCTOR, $MH_COLUMN_DETAIL) VALUES ('1','10/06/2023','Javier Rodriguez','Lo revisé y le recomendé que duerma más.')")
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -88,6 +124,8 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         db?.execSQL("DROP TABLE IF EXISTS $TABLE_PACIENTE")
         db?.execSQL("DROP TABLE IF EXISTS $TABLE_APPOINTMENTS")
         db?.execSQL("DROP TABLE IF EXISTS $TABLE_STUDIES")
+        db?.execSQL("DROP TABLE IF EXISTS $TABLE_SUPPLY")
+        db?.execSQL("DROP TABLE IF EXISTS $TABLE_MH")
         onCreate(db)
     }
 
@@ -170,7 +208,7 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         }
     }
 
-    fun getPatient(dni: String?, os: String?): Paciente {
+    fun getPatient(dni: String?, os: String ?= ""): Paciente {
         val db = this.readableDatabase
         if (dni.isNullOrEmpty() && os.isNullOrEmpty()) throw Exception("Debe indicar DNI y/o Nro de Obra Social")
 
@@ -289,5 +327,80 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
             cursor.close()
         }
         return list
+    }
+
+    fun getSupplies():MutableList<Supply>{
+        val bd = this.readableDatabase
+        val list = mutableListOf<Supply>()
+        val sql = "SELECT * FROM $TABLE_SUPPLY"
+        val cursor = bd.rawQuery(sql, null)
+        if(cursor.moveToFirst()){
+            do {
+                val supply = Supply(
+                    cursor.getString(0),
+                    cursor.getInt(1)
+                )
+                list.add(supply)
+            }
+                while(cursor.moveToNext())
+            bd.close()
+            cursor.close()
+        }
+        return list
+    }
+
+    fun updateSupplies(supplies: List<Supply>){
+        val db = this.writableDatabase
+        db.beginTransaction()
+        try {
+            for (supply in supplies) {
+                val contentValues = ContentValues()
+                contentValues.put(SUPPLY_COLUMN_QUANTITY, supply.quantity)
+                db.update(TABLE_SUPPLY, contentValues, "$SUPPLY_COLUMN_NAME = ?", arrayOf(supply.name))
+            }
+            db.setTransactionSuccessful()
+        } finally {
+            db.endTransaction()
+            db.close()
+        }
+
+    }
+
+    fun getAllMH(dni: String): MutableList<MHEntry> {
+        val bd = this.readableDatabase
+        val list = mutableListOf<MHEntry>()
+        val sql = "SELECT * FROM $TABLE_MH WHERE $MH_COLUMN_DNI = ?"
+        val cursor = bd.rawQuery(sql, arrayOf(dni))
+        if(cursor.moveToFirst()){
+            do {
+                val entry = MHEntry(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4)
+                )
+                list.add(entry)
+                }
+                while(cursor.moveToNext())
+            bd.close()
+            cursor.close()
+
+        }
+        return list
+    }
+
+    fun addMHEntry(dni: String, doctor: String, detail: String){
+        //adds new entry to the database
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(MH_COLUMN_DNI, dni)
+        contentValues.put(MH_COLUMN_DATE, SimpleDateFormat("dd/MM/yy", Locale.getDefault()).format(Date()))
+        contentValues.put(MH_COLUMN_DOCTOR, doctor)
+        contentValues.put(MH_COLUMN_DETAIL, detail)
+        db.insert(TABLE_MH, null, contentValues)
+        db.close()
+
+
     }
 }

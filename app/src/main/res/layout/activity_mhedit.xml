@@ -5,49 +5,51 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WaitingRoomActivity"
+    tools:context=".MHEditActivity"
     android:gravity="center"
     android:orientation="vertical">
 
+
     <TextView
-        android:id="@+id/txtWRoom"
+        android:id="@+id/txtMHistory"
         android:layout_width="360dp"
         android:layout_height="20dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        android:fontFamily="@font/atma"
-        android:text="Mi Sala de Espera"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#0C0C0C"
-        android:textSize="30sp" />
-
-    <EditText
-        android:id="@+id/editTxtCurrentDate"
-        android:layout_width="260dp"
-        android:layout_height="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:fontFamily="@font/atma"
-        android:ems="10"
-        android:inputType="date"
+        android:text="Creando Nueva Entrada"
         android:textAlignment="center"
-        android:background="@drawable/rounded"/>
+        android:textAllCaps="true"
+        android:textColor="#0C0C0C"
+        android:textSize="24sp" />
 
-    <ListView
-        android:layout_width="260dp"
-        android:layout_height="156dp"
-        android:layout_weight="3"
-        android:fontFamily="@font/atma"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="#C61414"/>
+    <EditText
+        android:id="@+id/editEntry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine" />
 
     <Button
-        android:id="@+id/btnBackDP"
-        android:text="Volver"
+        android:id="@+id/btnSave"
+        android:text="Guardar Cambios"
+        android:fontFamily="@font/atma"
+        android:textColor="#041120"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1.5"
+        android:backgroundTint="#b2f2bb" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:text="Cancelar"
         android:fontFamily="@font/atma"
         android:textColor="#041120"
         android:textSize="24sp"
@@ -55,7 +57,7 @@
         android:includeFontPadding="true"
         android:layout_width="260dp"
         android:layout_height="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="70dp"
         android:layout_weight="1"
         android:backgroundTint="#ffc9c9" />
