@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".StudyActivity">
+    tools:context=".StudyActivity"
+    android:gravity="center">
 
     <EditText
         android:id="@+id/txtDate"
@@ -58,22 +59,35 @@
         android:textColor="@color/black"
         android:textSize="30sp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="100" />
+
 
     <Button
         android:id="@+id/btnSetAppointment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Continuar" />
+        android:text="CONTINUAR"
+        android:fontFamily="@font/atma"
+        android:textColor="#041120"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="2"
+        android:backgroundTint="#b2f2bb" />
 
     <Button
         android:id="@+id/btnBackAppointments"
-        style="@style/Theme.CínicaSePrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Volver" />
+        android:text="VOLVER"
+        android:fontFamily="@font/atma"
+        android:textSize="24sp"
+        android:textColor="#0c0c0c"
+        android:textAlignment="center"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="70dp"
+        android:layout_weight="1"
+        android:backgroundTint="#E3C5E8"
+        android:includeFontPadding="true"/>
 
 </LinearLayout>
