@@ -25,6 +25,9 @@
             android:name=".VoucherPrintingActivity"
             android:exported="false" />
         <activity
+            android:name=".StudyActivity"
+            android:exported="false" />
+        <activity
             android:name=".StudyVoucherActivity"
             android:exported="false" />
         <activity
