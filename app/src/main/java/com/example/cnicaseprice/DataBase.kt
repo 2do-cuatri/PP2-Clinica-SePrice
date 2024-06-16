@@ -245,6 +245,28 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
         }
     }
 
+    fun getPatientAppointments(dni: String?): MutableList<Appointment> {
+        if (dni.isNullOrEmpty()) throw Exception("Datos de paciente insuficientes");
+        val db = this.readableDatabase;
+        val list = mutableListOf<Appointment>()
+        val cursor = db.rawQuery("SELECT $TABLE_STUDIES.$COLUMN_ID, $COLUMN_PATIENT_DNI, $COLUMN_DATE, $COLUMN_TYPE, $COLUMN_NAME FROM $TABLE_APPOINTMENTS INNER JOIN $TABLE_STUDIES ON $TABLE_APPOINTMENTS.$COLUMN_STUDY_ID = $TABLE_STUDIES.$COLUMN_ID WHERE $COLUMN_PATIENT_DNI = ?", arrayOf(dni))
+        if(cursor.moveToFirst()){
+            do{
+                val appointment = Appointment(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4)
+                )
+                list.add(appointment)
+            } while(cursor.moveToNext())
+            db.close()
+            cursor.close()
+        }
+        return list
+    }
+
     fun getAllStudies(type: String? = null): MutableList<Study>{
         val bd = this.readableDatabase
         val list = mutableListOf<Study>()
