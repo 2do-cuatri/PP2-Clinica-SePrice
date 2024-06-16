@@ -41,6 +41,7 @@ class StudyActivity : AppCompatActivity() {
                     val lastName = findViewById<EditText>(R.id.txtLastName).text?.toString()
                     databaseHelper.assignAppointmentToPatient(appointmentId.toInt(), dni, os, firstName, lastName)
                     val confirmIntent = Intent(this, ConfirmMessageActivity::class.java)
+                    confirmIntent.putExtra("appId", appointmentId.toString())
                     startActivity(confirmIntent)
                 } catch(e: Exception) {
                     Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
