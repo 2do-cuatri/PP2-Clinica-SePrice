@@ -23,18 +23,13 @@ class AdminMenuActivity : AppCompatActivity() {
         }
         val button3 = findViewById<Button>(R.id.btnLaboratory)
         button3.setOnClickListener{
-            val intent3 = Intent(this, LaboratoryActivity::class.java)
+            val intent3 = Intent(this, StudyVoucherActivity::class.java)
             startActivity(intent3)
         }
-        val button4 = findViewById<Button>(R.id.btnClinic)
+        val button4 = findViewById<Button>(R.id.btnBackMain)
         button4.setOnClickListener{
-            val intent4 = Intent(this, ClinicActivity::class.java)
+            val intent4 = Intent(this, MainActivity::class.java)
             startActivity(intent4)
-        }
-        val button5 = findViewById<Button>(R.id.btnBackMain)
-        button5.setOnClickListener{
-            val intent5 = Intent(this, MainActivity::class.java)
-            startActivity(intent5)
         }
     }
 }

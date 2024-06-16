@@ -14,7 +14,7 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
     companion object {
         // General DB config
         private const val DATABASE_NAME = "SePrice"
-        private const val DATABASE_VERSION = 4
+        private const val DATABASE_VERSION = 5
 
         // Generic columns
         private const val COLUMN_ID = "id"
@@ -303,6 +303,35 @@ class DataBase (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null
             cursor.close()
         }
         return list
+    }
+
+    fun getAppointmentExists(id: String): Boolean {
+        val db = this.readableDatabase;
+        val cursor = db.rawQuery("SELECT $COLUMN_ID FROM $TABLE_APPOINTMENTS WHERE $COLUMN_ID = ?", arrayOf(id))
+        return cursor.moveToFirst()
+    }
+
+    data class FullAppointmentData(val appointment: Appointment, val patient: Paciente) {}
+    fun getFullAppointmentData(id: String): FullAppointmentData {
+        val db = this.readableDatabase;
+        val cursor = db.rawQuery("SELECT $TABLE_APPOINTMENTS.$COLUMN_ID, $COLUMN_DATE, $COLUMN_TYPE, $COLUMN_NAME, $COLUMN_DNI, $COLUMN_OS, $COLUMN_NOMBRE, $COLUMN_APELLIDO FROM $TABLE_APPOINTMENTS INNER JOIN $TABLE_PACIENTE ON $TABLE_APPOINTMENTS.$COLUMN_PATIENT_DNI = $TABLE_PACIENTE.$COLUMN_DNI INNER JOIN $TABLE_STUDIES ON $TABLE_APPOINTMENTS.$COLUMN_STUDY_ID = $TABLE_STUDIES.$COLUMN_ID WHERE $TABLE_APPOINTMENTS.$COLUMN_ID = ? LIMIT 1", arrayOf(id))
+        if (cursor.moveToFirst()) {
+            val app = Appointment(
+                cursor.getInt(0),
+                null,
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3)
+            )
+            val pt = Paciente(
+                cursor.getString(4),
+                cursor.getString(5),
+                cursor.getString(6),
+                cursor.getString(7)
+            )
+            val r = FullAppointmentData(app, pt)
+            return r
+        } else throw Exception("Informacion no encontrada")
     }
 
     fun getAllStudies(type: String? = null): MutableList<Study>{

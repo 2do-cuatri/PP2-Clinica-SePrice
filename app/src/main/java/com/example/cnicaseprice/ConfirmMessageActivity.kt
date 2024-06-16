@@ -3,6 +3,7 @@ package com.example.cnicaseprice
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,6 +19,9 @@ class ConfirmMessageActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val txtAppIdDisplay = findViewById<TextView>(R.id.txtAppointmentIdDisplay)
+        val appId = intent.getStringExtra("appId").toString()
+        txtAppIdDisplay.text = "Codigo de turno: $appId "
         val button1 = findViewById<Button>(R.id.btnBackAppo)
         button1.setOnClickListener {
             val intent1 = Intent(this, AppointmentActivity::class.java)
