@@ -25,7 +25,7 @@ class StudyVoucherActivity : AppCompatActivity() {
         }
         val button2 = findViewById<Button>(R.id.btnBackS)
         button2.setOnClickListener{
-            val intent2 = Intent(this, StudiesActivity::class.java)
+            val intent2 = Intent(this, AdminMenuActivity::class.java)
             startActivity(intent2)
         }
     }

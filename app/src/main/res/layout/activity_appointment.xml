@@ -1,81 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AppointmentActivity"
-    android:gravity="center"
-    android:orientation="vertical">
+    tools:context=".AppointmentActivity">
 
-    <EditText
-        android:id="@+id/editTxtDate"
-        android:hint="Fecha"
-        android:layout_width="260dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1.5"
-        android:fontFamily="@font/atma"
-        android:ems="10"
-        android:inputType="date"
-        android:textAlignment="center"
-        android:background="@drawable/rounded"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/txtRequired"
-        android:layout_width="360dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1.5"
-        android:fontFamily="@font/atma"
-        android:text="Seleccione el estudio o especialidad"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#0C0C0C"
-        android:textSize="24sp" />
+        <ListView
+            android:id="@+id/lvStudies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <ListView
-        android:layout_width="260dp"
-        android:layout_height="156dp"
-        android:layout_weight="3"
-        android:fontFamily="@font/atma"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="#C61414"/>
+        <Button
+            android:id="@+id/btnBackAppointments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Volver" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnContinueA"
-        android:text="Continuar"
-        android:fontFamily="@font/atma"
-        android:textColor="#041120"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        android:layout_width="260dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="2"
-        android:backgroundTint="#b2f2bb" />
-
-    <Button
-        android:id="@+id/btnBackToMenu"
-        android:text="Volver al Menú"
-        android:fontFamily="@font/atma"
-        android:textColor="#041120"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        android:includeFontPadding="true"
-        android:layout_width="260dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="70dp"
-        android:layout_weight="1"
-        android:backgroundTint="#ffc9c9" />
-
-
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
